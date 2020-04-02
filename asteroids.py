@@ -10,8 +10,8 @@ BLACK = 0, 0, 0
 
 WHITE = 255, 255, 255
 
-def main():
 
+def main():
 
     width = 800
     height = 600
@@ -21,16 +21,14 @@ def main():
     screen = pygame.display.set_mode((width, height))
     pygame.display.set_caption("Asteroids")
 
-
     font = pygame.font.Font('Planetnv2.ttf', 32)
-    
 
     clock = pygame.time.Clock()
 
     # create some asteroids
     asteroids = []
     for i in range(num_asteroids):
-        x = random.randint(0, width) 
+        x = random.randint(0, width)
         y = random.randint(0, height)
         a = Asteroid(x, y)
         asteroids.append(a)
@@ -55,25 +53,24 @@ def main():
                             else:
                                 asteroids.remove(a)
 
-                    
-
-        #update asteroids
+        # update asteroids
         for a in asteroids:
             a.move(width, height)
 
-        #draw screen
+        # draw screen
         screen.fill(BLACK)
 
         for a in asteroids:
             a.draw(screen)
-        
+
         text = font.render('Asteroids: %d' % (len(asteroids)), True, WHITE, BLACK)
-        textRect = text.get_rect()
-        textRect.x = 20
-        textRect.y = 20
-        screen.blit(text, textRect) 
+        text_rect = text.get_rect()
+        text_rect.x = 20
+        text_rect.y = 20
+        screen.blit(text, text_rect)
 
         pygame.display.flip()
+
 
 if __name__ == '__main__':
     sys.exit(main())

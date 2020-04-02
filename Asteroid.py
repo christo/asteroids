@@ -3,6 +3,7 @@ import random
 
 WHITE = 255, 255, 255
 
+
 class Asteroid:
 
     minimum_size = 20
@@ -27,10 +28,10 @@ class Asteroid:
             self.vx *= 0.999
         if abs(self.vy) > 2:
             self.vy *= 0.999
-        
 
     def explode(self):
         parts = []
+        # split into 4 parts of half edge size each including the current part
         self.size /= 2
         if self.size > self.minimum_size:
             for p in range(3):
@@ -38,5 +39,4 @@ class Asteroid:
         return parts
 
     def inside(self, pos):
-        return pygame.Rect(self.x, self.y, self.size, self.size).collidepoint(pos)
-    
+        return pygame.Rect(self.x, self.y, self.size, self.size).collidepoint(pos[0], pos[1])
